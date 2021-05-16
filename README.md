@@ -1,2 +1,2 @@
 # EquivalentResistors
-Simple program to find equivalent resistor configurations
+Simple program to find equivalent resistor configurations. Still in development.
