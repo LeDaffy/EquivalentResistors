@@ -1,15 +1,30 @@
-#include "include/print.h"
+#include "../include/print.h"
 
 
-void printResistors( long double resistance, int spaces ) { 
-    wchar_t Omega = 0x03A9;
-    wchar_t Overline = 0x203E;
-    setlocale(LC_CTYPE, "");
-    printSpaces(spaces); wprintf(L" |\n");
-    printSpaces(spaces); wprintf(L"|%lc|\n", Overline );
-    printSpaces(spaces); wprintf(L"| |\n");
-    printSpaces(spaces); wprintf(L"%.1Lf%lc\n", resistance, Omega);
-    printSpaces(spaces); wprintf(L"| |\n");
-    printSpaces(spaces); wprintf(L"|_|\n");
-    printSpaces(spaces); wprintf(L" |\n");
+
+void printResistance( long double resistance ) {
+    if (resistance < 1000) { printf("%.1Lf\u03A9", resistance); }
+    else if (resistance > 1000 && resistance < 1000000) { printf("%.0Lfk\u03A9", resistance/1000); }
+    else if (resistance > 1000000 && resistance < 1000000000) { printf("%.0LfM\u03A9", resistance/1000000); }
+    else if (resistance > 1000000000 && resistance < 1000000000000) { printf("%.0LfG\u03A9", resistance/1000000000); }
+    else if (resistance > 1000000000000 && resistance < 1000000000000000) { printf("%.0LfT\u03A9", resistance/1000000000000); }
+    else { printf("%.0Lf\u03A9", resistance); }
+}
+
+void printSingle( long double resistance) {
+    printf("###########\n");
+    printf("#    \u2022    #\n");
+    printf("#    |    #\n");
+    printf("#    |    #\n");
+    printf("#   |\u203E|   #\n");
+    printf("#   | |   #\n");
+    printf("#  ");
+    printResistance(resistance);
+    printf("   #\n");
+    printf("#   | |   #\n");
+    printf("#   |_|   #\n");
+    printf("#    |    #\n");
+    printf("#    |    #\n");
+    printf("#    \u2022    #\n");
+    printf("###########\n");
 }

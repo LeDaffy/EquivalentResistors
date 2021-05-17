@@ -6,6 +6,7 @@
 #include "operations.h"
 
 
-void printResistors( long double resistance, int spaces );
 
+void printResistance( long double resistance );
+void printSingle( long double resistance);
 #endif

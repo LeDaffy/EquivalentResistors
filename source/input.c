@@ -5,7 +5,7 @@
 #include "../include/engConvert.h"
 
 
-void handleInput(int argc, char *argv[], long double *inputResistance, float *precision, long double **removalValues, int *removalValuesArraySize) {
+void handleInput(int argc, char *argv[], long double *inputResistance, float *precision, long double **removalValues, int *removalValuesArraySize, int *lowerLimit, int *upperLimit) {
     //printf("Entering handleInput()\n");
     /*printf("Input is being handled\n");
 
@@ -29,10 +29,18 @@ void handleInput(int argc, char *argv[], long double *inputResistance, float *pr
 			input = engConvert( input, modifier) ;
             //printf("The user input resistance has been read as %.1Lf\n", input);
             *inputResistance = input;
+            if (*inputResistance <= 0) {
+                printf("Input resistance must be greater than 0\n");
+                exit(-1);
+            }
 		}
         //handle user input precision
         else if ( !strcmp("-p", argv[i]) ) {
 			sscanf( argv[i+1], "%f", &(*precision));
+            if (*precision < 0 || *precision > 100) {
+                printf(" Precision must be a postive integer representing 0 to 100 percent\n");
+                exit(-1);
+            }
 		}
 
         
@@ -55,6 +63,9 @@ void handleInput(int argc, char *argv[], long double *inputResistance, float *pr
             *removalValuesArraySize = removeArraySize;
             //allocate array on the heap
             *removalValues = (long double*)malloc(removeArraySize*sizeof(long double));
+            if (*removalValues == NULL) {
+                exit(-1);
+            }
             //convert argv[] (chars) to long doubles with possible engineering notation
             for ( int j = 0; j < removeArraySize; j++ ) {
                 long double tempVal;
@@ -68,6 +79,21 @@ void handleInput(int argc, char *argv[], long double *inputResistance, float *pr
             }
 
 		}
+
+        else if ( !strcmp("-ul", argv[i]) ) {
+            if (atoi(argv[i+1]) > 4) {
+                printf("Upper limit greater than 4 not supported\n");
+                exit(-1);
+            }
+            *upperLimit = atoi(argv[i+1]);
+        }
+        else if ( !strcmp("-ll", argv[i]) ) {
+            if (atoi(argv[i+1]) < 1) {
+                printf("Lower limit less than 1 not supported\n");
+                exit(-1);
+            }
+            *lowerLimit = atoi(argv[i+1]);
+        }
     }
 
     //printf("Exiting handleInput()\n\n");
