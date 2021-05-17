@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "../include/input.h"
 #include "../include/engConvert.h"
 
 
 void handleInput(int argc, char *argv[], long double *inputResistance, float *precision, long double **removalValues, int *removalValuesArraySize) {
-    printf("Entering handleInput()\n");
+    //printf("Entering handleInput()\n");
     /*printf("Input is being handled\n");
 
     printf("Check if the first two function parameters are properly pass\n");
@@ -23,10 +24,10 @@ void handleInput(int argc, char *argv[], long double *inputResistance, float *pr
 
         //handle user input resistance
         if ( !strcmp( "-i", argv[i]) ) {
-			printf("Input detected\n");
+			//printf("Input detected\n");
             sscanf( argv[i+1], "%Lf%c", &input, &modifier);
 			input = engConvert( input, modifier) ;
-            printf("The user input resistance has been read as %.1Lf\n", input);
+            //printf("The user input resistance has been read as %.1Lf\n", input);
             *inputResistance = input;
 		}
         //handle user input precision
@@ -60,13 +61,14 @@ void handleInput(int argc, char *argv[], long double *inputResistance, float *pr
                 char tempMod;
                 sscanf(argv[removeStartVal+j], "%Lf%c", &tempVal, &tempMod);
                 //value read in
-                printf("\nThe value read from the array is %.1Lf\n", engConvert(tempVal, tempMod));
-                //removalValues[j] = engConvert(tempVal, tempMod);
+                //printf("\nThe value read from the array is %.1Lf\n", engConvert(tempVal, tempMod));
+                *(*removalValues+j) = engConvert(tempVal, tempMod);\
+                //printf("The value inside of the double pointer is %.1Lf", *(*removalValues+j));
                 tempMod = 'a';
             }
 
 		}
     }
 
-    printf("Exiting handleInput()\n\n");
+    //printf("Exiting handleInput()\n\n");
 }
