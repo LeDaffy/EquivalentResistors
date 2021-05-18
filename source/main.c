@@ -33,8 +33,19 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < arraySize; i++) {
 		printf("Missing resistor: %.1Lf\n", arrayPointer[i]);
 	}*/
+	
 
-	searchSingles(inputResistance, precision, &arrayPointer, arraySize);
+	float p1, p2;
+	long double sR1, s2R1, s2R2;
+	searchSingles(inputResistance, precision, &arrayPointer, arraySize, &sR1, &p1);
+	searchDoubleSeries(inputResistance, precision, &arrayPointer, arraySize, &s2R1, &s2R2, &p2);
+	if ( p1 < p2 ) {		
+		printSingle(sR1, p1, precision);
+		printDoubleSeries(s2R1, s2R2, p2, precision);
+	} else {
+		printDoubleSeries(s2R1, s2R2, p2, precision);
+		printSingle(sR1, p1, precision);
+	}
 
 
 

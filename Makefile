@@ -16,6 +16,7 @@ objs: source/* include/*
 
 
 test: app
+	clear
 	./REQ -i 48.3k -r 47k -p 15
 
 .PHONY: clean

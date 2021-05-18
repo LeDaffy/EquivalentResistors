@@ -8,5 +8,6 @@
 
 
 void printResistance( long double resistance );
-void printSingle( long double resistance);
+void printSingle( long double resistance, float precision, float minPrecision);
+void printDoubleSeries( long double R1, long double R2, float precision, float minPrecision);
 #endif
