@@ -15,38 +15,4 @@ Simple program to find equivalent resistor configurations. Still in development.
 
 Outputs:
 
-
-###########  
-     •  
-     |  
-     |  
-    |‾|  
-    | |  
-   750.00Ω  
-    | |  
-    |_|  
-     |  
-    |‾|  
-    | |  
-   1.80kΩ  
-    | |  
-    |_|  
-     |  
-     |  
-     •       
-###########  
-
-2.70kΩ	 6.343%  
-###########  
-     •  
-     |  
-     |  
-    |‾|  
-    | |  
-   2.70kΩ  
-    | |  
-    |_|  
-     |  
-     |  
-     •  
-###########\
+![alt text](https://github.com/LeDaffy/EquivalentResistors/blob/main/REQ.png?raw=true)
