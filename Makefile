@@ -4,7 +4,7 @@ SRC = source/
 BLD = build/
 INC = include/
 
-OBJECTS = main.o input.o engConvert.o operations.o print.o search.o
+OBJECTS = main.o input.o engConvert.o operations.o print.o search.o resistor.o
 SOURCES = $(OBJECTS:.o=.c)
 
 
@@ -16,7 +16,6 @@ objs: source/* include/*
 
 
 test: app
-	clear
 	./REQ -i 48.3k -r 47k -p 15
 
 .PHONY: clean
